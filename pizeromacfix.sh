@@ -37,10 +37,10 @@ for i in ${interfaces[*]}; do
 				break
 			fi
 		done
-		sudo ip link set $interface address "$macprefix""$pizeronum"
+		sudo ip link set $i address "$macprefix$pizeronum"
 		sudo ip link set $i up
 		macaddress="$(ifconfig $i | grep ether | awk -F ' ' '{print $2}')"
-		if [ "$macaddress" == "00:e0:4c:53:44:58" ] #checks again to verify that the mac address has been updated successfully
+		if [ "$macaddress" != "00:e0:4c:53:44:58" ] #checks again to verify that the mac address has been updated successfully
 		then
 			echo "MAC address update successful for $i."
 		else
