@@ -30,10 +30,10 @@ for i in ${interfaces[*]}; do
 				continue
 			elif [ "$timeout" == "0" ]
 			then
-				"Timeout reached. Moving on."
+				echo "Timeout reached. Moving on."
 				break
 			else
-				"$i is down. Moving on."
+				echo "$i is down. Moving on."
 				break
 			fi
 		done
