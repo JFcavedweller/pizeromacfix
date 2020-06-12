@@ -16,7 +16,7 @@ for i in ${interfaces[*]}; do
 	echo "interface $i"
 	macaddress="$(ifconfig $i | grep ether | grep -Eo '[[:alnum:]\:]{17}')"
 	echo "mac address is $macaddress"
-	if ["$macaddress" == "00:e0:4c:53:44:58" ]
+	if [ "$macaddress" == "00:e0:4c:53:44:58" ]
 	then
 		echo "00:e0:4c:53:44:58 found on $i. beginning spoof"
 		sudo ip link set $i down #disables interface
@@ -40,7 +40,7 @@ for i in ${interfaces[*]}; do
 		sudo ip link set $interface address "$macprefix""$pizeronum"
 		sudo ip link set $i up
 		macaddress="$(ifconfig $i | grep ether | awk -F ' ' '{print $2}')"
-		if ["$macaddress" == "00:e0:4c:53:44:58" ] #checks again to verify that the mac address has been updated successfully
+		if [ "$macaddress" == "00:e0:4c:53:44:58" ] #checks again to verify that the mac address has been updated successfully
 		then
 			echo "MAC address update successful for $i."
 		else
